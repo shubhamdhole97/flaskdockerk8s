@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyflaskdockerapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pyflaskdockerapp
+  template:
+    metadata:
+      labels:
+        app: pyflaskdockerapp
+    spec:
+      containers:
+      - name: pyflaskdockerapp
+        image: mujahed/nubeera-mco-pyflaskdockerapp:4.0.1
+        ports:
+        - containerPort: 8000
