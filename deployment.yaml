@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: pyflaskdockerapp
-        image: shubhamdhole97/custom-img-pyapp:5.0.0
+        image: shubhamdhole97/custom-img-pyapp:5.0.0  # This gets updated by your script
         ports:
         - containerPort: 8000
