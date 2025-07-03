@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: flaskdockerk8s
-        image: shubhamdhole97/custom-img-pyapp:4.0.0
+        image: shubhamdhole97/custom-img-pyapp:initial
         ports:
         - containerPort: 8000
