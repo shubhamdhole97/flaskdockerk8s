@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e  # Exit on error
-
 VERSION_NUMBER=$(cat version.txt 2>/dev/null)
 VERSION_NUMBER="${VERSION_NUMBER:-1}"
 
@@ -16,14 +14,12 @@ docker push shubhamdhole97/custom-img-pyapp:$VERSION_NUMBER
 
 echo "✅ Image pushed to Docker Hub"
 
-# Run container locally (Optional, for testing)
-# docker run --rm -p 8000:8000 custom-img-pyapp:$VERSION_NUMBER
+# Update deployment.yaml with correct version
+sed -i "s|shubhamdhole97/custom-img-pyapp:.*|shubhamdhole97/custom-img-pyapp:$VERSION_NUMBER|g" deployment.yaml
 
-# Update image tag in deployment.yaml
-sed -i "s|\(image: shubhamdhole97/custom-img-pyapp:\).*|\1$VERSION_NUMBER|" deployment.yaml
+echo "🛠️ Updated deployment.yaml with version: $VERSION_NUMBER"
 
-echo "📦 Updated deployment.yaml with image version: $VERSION_NUMBER"
+ Optional: Apply deployment
+ kubectl apply -f deployment.yaml
 
-kubectl apply -f deployment.yaml
-
-echo "🚀 Kubernetes deployment updated to version $VERSION_NUMBER"
+ Run container locally (Optional, for testing) docker run --rm -p 8000:8000 custom-img-pyapp:$VERSION_NUMBER
