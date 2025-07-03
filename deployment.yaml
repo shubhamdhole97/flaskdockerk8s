@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flaskdockerk8s-deployment
+  name: pyflaskdockerapp-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: flaskdockerk8s
+      app: pyflaskdockerapp
   template:
     metadata:
       labels:
-        app: flaskdockerk8s
+        app: pyflaskdockerapp
     spec:
       containers:
-      - name: flaskdockerk8s
-        image: shubhamdhole97/custom-img-pyapp:initial
+      - name: pyflaskdockerapp
+        image: shubhamdhole97/custom-img-pyapp:5.0.0
         ports:
         - containerPort: 8000

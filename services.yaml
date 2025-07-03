@@ -4,7 +4,7 @@ metadata:
   name: pyflaskdockerapp-service
 spec:
   selector:
-    app: flaskdockek8s
+    app: pyflaskdockerapp
   ports:
     - protocol: TCP
       port: 80
