@@ -3,7 +3,7 @@
 VERSION_NUMBER=$(cat version.txt 2>/dev/null)
 VERSION_NUMBER="${VERSION_NUMBER:-1}"
 
-cd /root/flaskdockerk8s
+cd /root/flaskdockerk8s || exit 1
 git pull
 
 echo "📦 Building Docker image version: $VERSION_NUMBER"
@@ -19,7 +19,8 @@ sed -i "s|shubhamdhole97/custom-img-pyapp:.*|shubhamdhole97/custom-img-pyapp:$VE
 
 echo "🛠️ Updated deployment.yaml with version: $VERSION_NUMBER"
 
- Optional: Apply deployment
- kubectl apply -f deployment.yaml
+# Optional: Apply deployment
+kubectl apply -f deployment.yaml
 
- Run container locally (Optional, for testing) docker run --rm -p 8000:8000 custom-img-pyapp:$VERSION_NUMBER
+# Optional: Run container locally for testing
+docker run --rm -p 8000:8000 custom-img-pyapp:$VERSION_NUMBER
