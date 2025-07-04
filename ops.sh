@@ -8,7 +8,7 @@ git pull
 
 echo "📦 Building Docker image version: $VERSION_NUMBER"
 
-docker build -t custom-img-pyapp:$VERSION_NUMBER .
+docker build --no-cache -t custom-img-pyapp:$VERSION_NUMBER .
 docker tag custom-img-pyapp:$VERSION_NUMBER shubhamdhole97/custom-img-pyapp:$VERSION_NUMBER
 docker push shubhamdhole97/custom-img-pyapp:$VERSION_NUMBER
 
@@ -19,8 +19,5 @@ sed -i "s|shubhamdhole97/custom-img-pyapp:.*|shubhamdhole97/custom-img-pyapp:$VE
 
 echo "🛠️ Updated deployment.yaml with version: $VERSION_NUMBER"
 
-# Optional: Apply deployment
+# Apply deployment
 kubectl apply -f deployment.yaml
-
-# Optional: Run container locally for testing
-#docker run --rm -p 8000:8000 custom-img-pyapp:$VERSION_NUMBER
