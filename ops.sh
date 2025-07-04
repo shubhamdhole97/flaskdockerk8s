@@ -23,4 +23,4 @@ echo "🛠️ Updated deployment.yaml with version: $VERSION_NUMBER"
 kubectl apply -f deployment.yaml
 
 # Optional: Run container locally for testing
-docker run --rm -p 8000:8000 custom-img-pyapp:$VERSION_NUMBER
+#docker run --rm -p 8000:8000 custom-img-pyapp:$VERSION_NUMBER
