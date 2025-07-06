@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e  # Exit immediately if any command fails
+
 VERSION_NUMBER=$(cat version.txt 2>/dev/null)
 VERSION_NUMBER="${VERSION_NUMBER:-1}"
 
@@ -14,11 +16,13 @@ docker push shubhamdhole97/custom-img-pyapp:$VERSION_NUMBER
 
 echo "✅ Image pushed to Docker Hub"
 
-# Update deployment.yaml with correct version
-sed -i "s|shubhamdhole97/custom-img-pyapp:.*|shubhamdhole97/custom-img-pyapp:$VERSION_NUMBER|g" deployment.yaml
+# Update deployment.yaml with correct version (only in image line)
+sed -i "s|image: shubhamdhole97/custom-img-pyapp:.*|image: shubhamdhole97/custom-img-pyapp:$VERSION_NUMBER|g" deployment.yaml
 
 echo "🛠️ Updated deployment.yaml with version: $VERSION_NUMBER"
 
-# Apply deployment
+# Apply deployment and service
 kubectl apply -f deployment.yaml
 kubectl apply -f services.yaml
+
+echo "🚀 Deployment and service applied successfully"
