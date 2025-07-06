@@ -23,7 +23,6 @@ echo "🛠️ Updated deployment.yaml with version: $VERSION_NUMBER"
 
 # Apply deployment and service
 kubectl apply -f deployment.yaml
-kubectl apply -f services.yaml
 kubectl rollout restart deployment pyflaskdockerapp-deployment
 
 echo "🚀 Deployment and service applied successfully"
