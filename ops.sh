@@ -21,3 +21,4 @@ echo "🛠️ Updated deployment.yaml with version: $VERSION_NUMBER"
 
 # Apply deployment
 kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
