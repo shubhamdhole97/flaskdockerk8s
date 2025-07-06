@@ -21,8 +21,12 @@ sed -i "s|image: shubhamdhole97/custom-img-pyapp:.*|image: shubhamdhole97/custom
 
 echo "🛠️ Updated deployment.yaml with version: $VERSION_NUMBER"
 
+# Extract deployment name dynamically
+DEPLOYMENT_NAME=$(grep -m1 'name:' deployment.yaml | awk '{print $2}')
+echo "🔄 Restarting deployment: $DEPLOYMENT_NAME"
+
 # Apply deployment and service
 kubectl apply -f deployment.yaml
-kubectl rollout restart deployment pyflaskdockerapp-deployment
+kubectl rollout restart deployment "$DEPLOYMENT_NAME"
 
 echo "🚀 Deployment and service applied successfully"
