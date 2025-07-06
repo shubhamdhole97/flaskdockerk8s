@@ -9,4 +9,6 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8000
-  type: LoadBalancer  # You can also use NodePort, ClusterIP based on your needs
+      nodePort: 30080  # Optional: You can specify, or let Kubernetes assign a random port in the 30000-32767 range
+  type: NodePort
+
