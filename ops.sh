@@ -27,6 +27,7 @@ echo "🔄 Restarting deployment: $DEPLOYMENT_NAME"
 
 # Apply deployment and service
 kubectl apply -f deployment.yaml
+kubectl apply -f services.yaml
 kubectl rollout restart deployment "$DEPLOYMENT_NAME"
 
 echo "🚀 Deployment and service applied successfully"
